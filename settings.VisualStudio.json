@@ -1,0 +1,9 @@
+/* Visual Studio Settings File */
+{
+  "debugging.outputWindow.generalOutputSettings.threadExit": false,
+  "debugging.outputWindow.generalOutputSettings.stepFilter": false,
+  "debugging.outputWindow.generalOutputSettings.moduleLoad": false,
+  "debugging.outputWindow.generalOutputSettings.moduleSymbolSearch": false,
+  "debugging.outputWindow.generalOutputSettings.moduleUnload": false,
+  "debugging.outputWindow.generalOutputSettings.processExit": false
+}
