@@ -1,0 +1,77 @@
+﻿@model EmployeeEditViewModel
+@{
+    ViewBag.Title = "Edit Employee";
+    var photoPath = "~/images/" + (Model.ExistingPhotoPath ?? "noimage.jpg");
+}
+
+<div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-0 pt-4 pb-0">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="bg-primary-subtle text-primary rounded-circle d-inline-flex align-items-center justify-content-center flex-shrink-0" style="width: 56px; height: 56px;">
+                        <i class="bi bi-pencil-square fs-4"></i>
+                    </div>
+                    <div>
+                        <h3 class="fw-bold mb-1">Edit Employee</h3>
+                        <p class="text-muted small mb-0">Update the employee details</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body p-4">
+                <form enctype="multipart/form-data" asp-controller="home" asp-action="edit" method="post">
+                    <input hidden asp-for="Id" />
+                    <input hidden asp-for="ExistingPhotoPath" />
+
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 small"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label fw-medium"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-person"></i></span>
+                            <input asp-for="Name" class="form-control" placeholder="Enter full name" />
+                        </div>
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-medium"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                            <input asp-for="Email" class="form-control" placeholder="Enter email address" />
+                        </div>
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Department" class="form-label fw-medium"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-diagram-3"></i></span>
+                            <select asp-for="Department" class="form-select"
+                                    asp-items="Html.GetEnumSelectList<Dept>()">
+                                <option value="">Please Select</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="Department" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Photo" class="form-label fw-medium"></label>
+                        <input accept="image/*" asp-for="Photo" class="form-control" type="file" />
+                        <div class="form-text">Leave empty to keep existing photo.</div>
+                    </div>
+
+                    <div class="mb-4 text-center">
+                        <img src="@photoPath" asp-append-version="true" class="img-thumbnail rounded" style="width: 200px; height: 200px; object-fit: cover;" alt="Employee photo" />
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        <button type="submit" class="btn btn-primary text-nowrap d-inline-flex align-items-center justify-content-center" style="min-width: 110px;">Update</button>
+                        <a asp-action="index" asp-controller="home" class="btn btn-outline-secondary text-nowrap d-inline-flex align-items-center justify-content-center" style="min-width: 110px;">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
